@@ -3,6 +3,7 @@ package com.mepark.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +14,6 @@ import org.springframework.util.Assert;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
-
 
 @EqualsAndHashCode
 @ToString
@@ -29,6 +29,9 @@ public class Project implements Serializable {
 	@Getter
 	private String name;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
+	private List<Item> items;
+
 	public Project(String name) {
 		setName(name);
 	}
@@ -37,9 +40,6 @@ public class Project implements Serializable {
 		Assert.hasText(name, "project.require.name");
 		this.name = name;
 	}
-
-	@OneToMany
-	private List<Item> items;
 
 	public void changeName(String name) {
 		setName(name);

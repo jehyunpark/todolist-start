@@ -31,5 +31,4 @@ public class ProjectTest {
 		
 		assertThat(project.getName(), is(changedName));
 	}
-
 }
