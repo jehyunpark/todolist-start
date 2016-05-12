@@ -8,21 +8,21 @@ import org.junit.Test;
 public class ProjectTest {
 
 	@Test
-	public void test() {
+	public void 생성자() {
 		String name = "testProject";
 		Project project = new Project(name);
 		assertThat(project.getName(), is(name));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testName��Null�ΰ��_���ܹ߻�() {
+	public void 프로젝트이름_Null인경우_예외발생() {
 		String name = null;
 		Project project = new Project(name);
 		assertThat(project.getName(), is(name));
 	}
 	
 	@Test
-	public void testChangeName() {
+	public void 프로젝트이름변경() {
 		String name = "testProject";
 		Project project = new Project(name);
 		
