@@ -29,6 +29,9 @@ public class Project implements Serializable {
 	@Getter
 	private String name;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
+	private List<Item> items;
+
 	public Project(String name) {
 		setName(name);
 	}
@@ -37,9 +40,6 @@ public class Project implements Serializable {
 		Assert.hasText(name, "project.require.name");
 		this.name = name;
 	}
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "project", orphanRemoval = true)
-	private List<Item> items;
 
 	public void changeName(String name) {
 		setName(name);
